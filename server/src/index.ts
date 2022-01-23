@@ -5,12 +5,20 @@ import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 import { HelloResolver, UsersResolver } from "./resolvers";
 import { micorConfig } from "./config";
+import cors from "cors";
 
 const main = async () => {
   const orm = await MikroORM.init(micorConfig);
   await orm.getMigrator().up();
 
   const app = express();
+
+  app.use(
+    cors({
+      origin: "http://localhost:3000",
+      credentials: true,
+    })
+  );
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
@@ -22,7 +30,10 @@ const main = async () => {
 
   await apolloServer.start();
 
-  apolloServer.applyMiddleware({ app });
+  apolloServer.applyMiddleware({
+    app,
+    cors: false,
+  });
 
   // app.get("/", (_, res) => {
   //   res.send("hello");

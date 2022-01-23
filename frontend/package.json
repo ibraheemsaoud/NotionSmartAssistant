@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest",
+    "gen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@emotion/cache": "latest",
@@ -19,9 +20,14 @@
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "urql": "^2.0.6"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "2.4.0",
+    "@graphql-codegen/typescript": "2.4.2",
+    "@graphql-codegen/typescript-operations": "2.2.2",
+    "@graphql-codegen/typescript-urql": "^3.4.2",
     "eslint": "latest",
     "eslint-config-next": "latest"
   }
