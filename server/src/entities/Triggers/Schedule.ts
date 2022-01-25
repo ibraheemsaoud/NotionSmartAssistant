@@ -29,7 +29,7 @@ export class Schedule {
 
   @Field()
   @Property()
-  userId!: string;
+  userId!: number;
 
   @Field()
   @Enum(() => TriggerCondition)
@@ -49,7 +49,7 @@ export class Schedule {
 
   @Field()
   @Property()
-  deleted: boolean;
+  deleted: boolean = false;
 
   @Field(() => String)
   @Property({ type: "date" })

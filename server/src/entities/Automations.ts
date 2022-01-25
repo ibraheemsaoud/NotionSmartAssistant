@@ -39,7 +39,7 @@ export class Automations {
 
   @Field()
   @Property()
-  deleted: boolean;
+  deleted: boolean = false;
 
   @Field(() => String)
   @Property({ type: "date" })
@@ -47,5 +47,5 @@ export class Automations {
 
   @Field()
   @Property()
-  disabled: boolean;
+  disabled: boolean = false;
 }

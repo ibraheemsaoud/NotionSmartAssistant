@@ -12,7 +12,7 @@ import {
   Resolver,
 } from "type-graphql";
 import argon2 from "argon2";
-import { FieldError } from "./Types";
+import { FieldError } from "./types";
 
 @InputType()
 class UsernamePasswordInput {

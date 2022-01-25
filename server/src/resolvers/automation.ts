@@ -18,7 +18,7 @@ import {
   Schedule,
   TriggerTypes,
 } from "../entities";
-import { FieldError } from "./Types";
+import { FieldError } from "./types";
 
 @InputType()
 class AutomationData {
@@ -87,7 +87,7 @@ export class AutomationResolver {
     @Arg("userId", () => Number) userId: number,
     @Ctx() { em }: MyContext
   ): Promise<Automations[]> {
-    return em.find(Automations, { userId });
+    return em.find(Automations, { userId, deleted: false });
   }
 
   @Query(() => Automations, { nullable: true })
@@ -95,7 +95,7 @@ export class AutomationResolver {
     @Arg("id", () => Int) id: number,
     @Ctx() { em }: MyContext
   ): Promise<Automations | null> {
-    return em.findOne(Automations, { id });
+    return em.findOne(Automations, { id, deleted: false  });
   }
 
   @Mutation(() => AutomationResponse)
@@ -132,7 +132,7 @@ export class AutomationResolver {
     automation: AutomationData,
     @Ctx() { em }: MyContext
   ): Promise<AutomationResponse | null> {
-    const automationToUpdate = await em.findOne(Automations, { id });
+    const automationToUpdate = await em.findOne(Automations, { id, deleted: false  });
     if (!automationToUpdate) {
       return null;
     }

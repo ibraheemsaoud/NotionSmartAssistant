@@ -38,7 +38,7 @@ export class AddDatabaseEntry {
 
   @Field()
   @Property()
-  deleted: boolean;
+  deleted: boolean = false;
 
   @Field(() => String)
   @Property({ type: "date" })

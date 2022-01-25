@@ -3,7 +3,12 @@ import { MikroORM } from "@mikro-orm/core";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
-import { AutomationResolver, UsersResolver } from "./resolvers";
+import {
+  AddDatabaseEnteryResolver,
+  AutomationResolver,
+  ScheduleResolver,
+  UsersResolver,
+} from "./resolvers";
 import { micorConfig } from "./config";
 import cors from "cors";
 
@@ -22,7 +27,12 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [UsersResolver, AutomationResolver],
+      resolvers: [
+        UsersResolver,
+        AutomationResolver,
+        ScheduleResolver,
+        AddDatabaseEnteryResolver,
+      ],
       validate: false,
     }),
     context: () => ({ em: orm.em }),
