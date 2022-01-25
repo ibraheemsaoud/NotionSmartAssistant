@@ -1,5 +1,5 @@
 export * from "./AddDatabaseEntery";
 
-export enum AutomationTypes {
+export enum ActionTypes {
   ADD_DATABASE_ENTRY,
 }

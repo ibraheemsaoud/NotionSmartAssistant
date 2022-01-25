@@ -42,4 +42,12 @@ export class Schedule {
   @Field(() => Int)
   @Property({ nullable: true })
   monthFrequency: Number;
+
+  @Field()
+  @Property()
+  deleted: boolean;
+
+  @Field(() => String)
+  @Property({ type: "date" })
+  deletedDate = new Date();
 }

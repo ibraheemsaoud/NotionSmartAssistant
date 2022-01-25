@@ -18,7 +18,7 @@ export class AddDatabaseEntry {
 
   @Field(() => String)
   @Property()
-  userId!: string;
+  userId!: number;
 
   @Field(() => String)
   @Property()
@@ -35,4 +35,12 @@ export class AddDatabaseEntry {
   @Field()
   @Property()
   dateFormat!: string;
+
+  @Field()
+  @Property()
+  deleted: boolean;
+
+  @Field(() => String)
+  @Property({ type: "date" })
+  deletedDate = new Date();
 }

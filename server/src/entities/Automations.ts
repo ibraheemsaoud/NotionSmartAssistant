@@ -1,6 +1,6 @@
 import { Entity, Enum, PrimaryKey, Property } from "@mikro-orm/core";
 import { Field, ObjectType } from "type-graphql";
-import { AutomationTypes, TriggerTypes } from ".";
+import { ActionTypes, TriggerTypes } from ".";
 
 @ObjectType()
 @Entity()
@@ -17,23 +17,35 @@ export class Automations {
   @Property({ type: "date", onUpdate: () => new Date() })
   updatedAt = new Date();
 
-  @Field(() => String)
-  @Property({ type: "date", onUpdate: () => new Date() })
-  userId = new Date();
+  @Field()
+  @Property()
+  userId: number;
 
   @Field(() => TriggerTypes)
   @Enum(() => TriggerTypes)
   triggerType!: TriggerTypes;
 
-  @Field(() => String)
-  @Property({ type: "string" })
-  triggerId!: string;
+  @Field()
+  @Property()
+  triggerId!: number;
 
-  @Field(() => AutomationTypes)
-  @Enum(() => AutomationTypes)
-  automationType!: AutomationTypes;
+  @Field(() => ActionTypes)
+  @Enum(() => ActionTypes)
+  actionType!: ActionTypes;
+
+  @Field()
+  @Property()
+  actionId!: number;
+
+  @Field()
+  @Property()
+  deleted: boolean;
 
   @Field(() => String)
-  @Property({ type: "string" })
-  automationId!: string;
+  @Property({ type: "date" })
+  deletedDate = new Date();
+
+  @Field()
+  @Property()
+  disabled: boolean;
 }
