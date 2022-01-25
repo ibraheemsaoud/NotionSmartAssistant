@@ -15,6 +15,41 @@ export type Scalars = {
   Float: number;
 };
 
+export enum ActionTypes {
+  AddDatabaseEntry = 'ADD_DATABASE_ENTRY'
+}
+
+export type AutomationData = {
+  actionId: Scalars['Float'];
+  actionType: Scalars['Float'];
+  deleted: Scalars['Boolean'];
+  disabled: Scalars['Boolean'];
+  triggerId: Scalars['Float'];
+  triggerType: Scalars['Float'];
+  userId: Scalars['Float'];
+};
+
+export type AutomationResponse = {
+  __typename?: 'AutomationResponse';
+  automation?: Maybe<Automations>;
+  errors?: Maybe<Array<FieldError>>;
+};
+
+export type Automations = {
+  __typename?: 'Automations';
+  actionId: Scalars['Float'];
+  actionType: ActionTypes;
+  createdAt: Scalars['String'];
+  deleted: Scalars['Boolean'];
+  deletedDate: Scalars['String'];
+  disabled: Scalars['Boolean'];
+  id: Scalars['Float'];
+  triggerId: Scalars['Float'];
+  triggerType: TriggerTypes;
+  updatedAt: Scalars['String'];
+  userId: Scalars['Float'];
+};
+
 export type FieldError = {
   __typename?: 'FieldError';
   field: Scalars['String'];
@@ -23,9 +58,16 @@ export type FieldError = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createAutomation: AutomationResponse;
   login: UserResponse;
   register: UserResponse;
+  updateAutomation?: Maybe<Automations>;
   updateUser?: Maybe<User>;
+};
+
+
+export type MutationCreateAutomationArgs = {
+  automationData: AutomationData;
 };
 
 
@@ -39,6 +81,11 @@ export type MutationRegisterArgs = {
 };
 
 
+export type MutationUpdateAutomationArgs = {
+  id: Scalars['Float'];
+};
+
+
 export type MutationUpdateUserArgs = {
   id: Scalars['Float'];
   username: Scalars['String'];
@@ -46,15 +93,30 @@ export type MutationUpdateUserArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  hello: Scalars['String'];
+  automation?: Maybe<Automations>;
+  automations: Array<Automations>;
   user?: Maybe<User>;
   users: Array<User>;
+};
+
+
+export type QueryAutomationArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryAutomationsArgs = {
+  userId: Scalars['Float'];
 };
 
 
 export type QueryUserArgs = {
   id: Scalars['Int'];
 };
+
+export enum TriggerTypes {
+  Schedule = 'SCHEDULE'
+}
 
 export type User = {
   __typename?: 'User';

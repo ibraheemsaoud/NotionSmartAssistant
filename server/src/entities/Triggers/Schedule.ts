@@ -1,5 +1,5 @@
 import { Entity, Enum, PrimaryKey, Property } from "@mikro-orm/core";
-import { Field, ID, Int, ObjectType } from "type-graphql";
+import { Field, ID, Int, ObjectType, registerEnumType } from "type-graphql";
 
 export enum TriggerCondition {
   DAILY, // daily at min X
@@ -7,6 +7,10 @@ export enum TriggerCondition {
   MONTHLY, // one day every N months, at min X
   NthDayOfTheMonth, // triggered every month on the same calander day at min X (every first sunday)
 }
+
+registerEnumType(TriggerCondition, {
+  name: "TriggerCondition",
+});
 
 @ObjectType()
 @Entity()

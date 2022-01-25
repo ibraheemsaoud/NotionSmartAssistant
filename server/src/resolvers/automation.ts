@@ -11,14 +11,13 @@ import {
   Query,
   Resolver,
 } from "type-graphql";
-import argon2 from "argon2";
 import {
   ActionTypes,
   AddDatabaseEntry,
   Automations,
   Schedule,
   TriggerTypes,
-} from "src/entities";
+} from "../entities";
 import { FieldError } from "./Types";
 
 @InputType()

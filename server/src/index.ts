@@ -3,7 +3,7 @@ import { MikroORM } from "@mikro-orm/core";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
-import { HelloResolver, UsersResolver } from "./resolvers";
+import { AutomationResolver, UsersResolver } from "./resolvers";
 import { micorConfig } from "./config";
 import cors from "cors";
 
@@ -15,14 +15,14 @@ const main = async () => {
 
   app.use(
     cors({
-      origin: "http://localhost:3000",
+      origin: ["http://localhost:3000", "https://studio.apollographql.com"],
       credentials: true,
     })
   );
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [HelloResolver, UsersResolver],
+      resolvers: [UsersResolver, AutomationResolver],
       validate: false,
     }),
     context: () => ({ em: orm.em }),
