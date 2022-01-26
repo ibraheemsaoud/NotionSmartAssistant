@@ -54,9 +54,11 @@ const main = async () => {
     console.log("server started");
   });
 
+  // const database = await NotionHandler().loadDatabase(
+  //   "5364a402d22d4bf7ad8a9f56fe6ffc03"
+  // );
   // console.log(
-  //   (await NotionHandler().loadDatabase("0563510848174e7680a609e4e1ac7fea"))
-  //     .results[0].cover
+  //   NotionHandler().updateDatabase("5364a402d22d4bf7ad8a9f56fe6ffc03")
   // );
 };
 

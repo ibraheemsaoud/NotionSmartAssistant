@@ -9,14 +9,14 @@ export type NotionProperty =
 // "created_time", "created_by", "last_edited_time", "last_edited_by"
 
 interface NotionPropertyCheckbox {
-  id: string;
+  id?: string;
   type: "checkbox";
   checkbox: boolean;
 }
 
 interface NotionPropertyMultiSelect {
-  id: string;
-  type: "multi_select";
+  id?: string;
+  type?: "multi_select";
   multi_select: {
     id: string;
     name: string;
@@ -25,12 +25,12 @@ interface NotionPropertyMultiSelect {
 }
 
 interface NotionPropertyTitle {
-  id: string;
-  type: "title";
+  id?: string;
+  type?: "title";
   title: {
-    type: "text";
-    text: { content: string; link: string | null };
-    annotations: {
+    type?: "text";
+    text: { content: string; link?: string | null };
+    annotations?: {
       bold: boolean;
       italic: boolean;
       strikethrough: boolean;
@@ -38,7 +38,7 @@ interface NotionPropertyTitle {
       code: boolean;
       color: "default";
     };
-    plain_text: string;
-    href: string | null;
+    plain_text?: string;
+    href?: string | null;
   }[];
 }

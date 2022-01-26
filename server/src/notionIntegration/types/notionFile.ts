@@ -14,6 +14,6 @@ interface NotionUploadedFile {
 }
 
 export interface EmojiObject {
-  type: "emojie";
+  type: "emoji";
   emoji: string;
 }

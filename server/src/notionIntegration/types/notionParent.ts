@@ -1,7 +1,7 @@
 import { NotionPage } from "./notionPage";
 
 export interface NotionParentDatabase {
-  type: "database_id";
+  type?: "database_id";
   database_id: string;
 }
 
