@@ -32,7 +32,7 @@
     "@mikro-orm/core": "^4.5.10",
     "@mikro-orm/migrations": "^4.5.10",
     "@mikro-orm/postgresql": "^4.5.10",
-    "@notionhq/client": "^0.4.12",
+    "@notionhq/client": "^0.4.13",
     "apollo-server-express": "^3.6.2",
     "argon2": "^0.28.3",
     "cors": "^2.8.5",

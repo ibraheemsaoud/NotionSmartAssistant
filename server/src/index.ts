@@ -11,6 +11,7 @@ import {
 } from "./resolvers";
 import { micorConfig } from "./config";
 import cors from "cors";
+import { NotionHandler } from "./notionIntegration";
 
 const main = async () => {
   const orm = await MikroORM.init(micorConfig);
@@ -52,6 +53,11 @@ const main = async () => {
   app.listen(4001, () => {
     console.log("server started");
   });
+
+  // console.log(
+  //   (await NotionHandler().loadDatabase("0563510848174e7680a609e4e1ac7fea"))
+  //     .results[0].cover
+  // );
 };
 
 main().catch((err) => {
