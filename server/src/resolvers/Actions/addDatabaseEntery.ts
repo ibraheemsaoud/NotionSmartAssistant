@@ -27,8 +27,6 @@ class AddDatabaseEntryData {
   dateFiledNameInNotion!: string;
   @Field()
   dateFormat!: string;
-  @Field()
-  deleted: boolean;
 }
 
 @ObjectType()

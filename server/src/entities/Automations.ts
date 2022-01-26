@@ -37,11 +37,9 @@ export class Automations {
   @Property()
   actionId!: number;
 
-  @Field()
   @Property()
   deleted: boolean = false;
 
-  @Field(() => String)
   @Property({ type: "date" })
   deletedDate = new Date();
 

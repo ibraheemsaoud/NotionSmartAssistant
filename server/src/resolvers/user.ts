@@ -71,6 +71,7 @@ export class UsersResolver {
       };
     }
     const hashedPassword = await argon2.hash(password);
+    console.log(hashedPassword);
     const user = em.create(User, { username, password: hashedPassword });
     try {
       await em.persistAndFlush(user);

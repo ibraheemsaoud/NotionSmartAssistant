@@ -39,7 +39,7 @@ export class Schedule {
   @Property({ type: "text" })
   triggerTime!: string;
 
-  @Field(() => [Boolean!]!)
+  @Field(() => [Boolean])
   @Property({ nullable: true })
   daysOfTheWeek: Boolean[];
 
@@ -47,11 +47,9 @@ export class Schedule {
   @Property({ nullable: true })
   monthFrequency: Number;
 
-  @Field()
   @Property()
   deleted: boolean = false;
 
-  @Field(() => String)
   @Property({ type: "date" })
   deletedDate = new Date();
 }

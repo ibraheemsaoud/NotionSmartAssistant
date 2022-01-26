@@ -18,17 +18,15 @@ import { validateEnum } from "../validations/enums";
 @InputType()
 class ScheduleData {
   @Field()
-  userId: number;
+  userId!: number;
   @Field()
   triggerCondition!: TriggerCondition;
   @Field()
   triggerTime!: string;
-  @Field(() => [Boolean!]!)
-  daysOfTheWeek!: Boolean[];
+  @Field(() => [Boolean])
+  daysOfTheWeek: Boolean[];
   @Field()
   monthFrequency: Number;
-  @Field()
-  deleted: boolean;
 }
 
 @ObjectType()

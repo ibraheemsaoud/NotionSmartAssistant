@@ -32,10 +32,6 @@ class AutomationData {
   actionType!: ActionTypes;
   @Field()
   actionId!: number;
-  @Field()
-  deleted: boolean;
-  @Field()
-  disabled: boolean;
 }
 
 @ObjectType()

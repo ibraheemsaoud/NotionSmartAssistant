@@ -36,11 +36,9 @@ export class AddDatabaseEntry {
   @Property()
   dateFormat!: string;
 
-  @Field()
   @Property()
   deleted: boolean = false;
 
-  @Field(() => String)
   @Property({ type: "date" })
   deletedDate = new Date();
 }
