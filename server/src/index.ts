@@ -11,6 +11,7 @@ import {
 } from "./resolvers";
 import { micorConfig } from "./config";
 import cors from "cors";
+import { PORT } from "./consts";
 // import { NotionHandler } from "./notionIntegration";
 
 const main = async () => {
@@ -50,7 +51,7 @@ const main = async () => {
   //   res.send("hello");
   // });
 
-  app.listen(4001, () => {
+  app.listen(PORT, () => {
     console.log("server started");
   });
 
