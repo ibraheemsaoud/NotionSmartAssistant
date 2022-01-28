@@ -12,7 +12,7 @@ import { createClient, Provider } from "urql";
 const clientSideEmotionCache = createEmotionCache();
 
 const graphqlCLient = createClient({
-  url: "http://localhost:4001/graphql",
+  url: "https://notion-smart-assistant.herokuapp.com:4001/graphql",
   fetchOptions: { credentials: "include" },
 });
 

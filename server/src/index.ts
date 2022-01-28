@@ -11,7 +11,7 @@ import {
 } from "./resolvers";
 import { micorConfig } from "./config";
 import cors from "cors";
-import { NotionHandler } from "./notionIntegration";
+// import { NotionHandler } from "./notionIntegration";
 
 const main = async () => {
   const orm = await MikroORM.init(micorConfig);
