@@ -11,11 +11,15 @@ exports.default = {
         path: path_1.default.join(__dirname, "./migrations"),
         pattern: /^[\w-]+\d+\.[tj]s$/,
     },
+    driverOptions: {
+        connection: { ssl: { rejectUnauthorized: false } },
+    },
     entities: [entities_1.User, entities_1.AddDatabaseEntry, entities_1.Schedule, entities_1.Automations],
-    dbName: "postgres",
+    host: consts_1.postgresqlHost,
+    dbName: consts_1.postgresqlDatabaseName,
     type: "postgresql",
     debug: !consts_1.__prod__,
-    user: "postgres",
-    password: "postgres",
+    user: consts_1.postgresqlUsername,
+    password: consts_1.postgresqlPassword,
 };
 //# sourceMappingURL=mikro-orm.config.js.map

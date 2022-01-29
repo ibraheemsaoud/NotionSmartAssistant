@@ -14,6 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 const core_1 = require("@mikro-orm/core");
+const https = require("https");
+const fs = require("fs");
 const express_1 = __importDefault(require("express"));
 const apollo_server_express_1 = require("apollo-server-express");
 const type_graphql_1 = require("type-graphql");
@@ -46,8 +48,18 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         app,
         cors: false,
     });
-    app.listen(consts_1.PORT, () => {
-        console.log("server started");
+    app.get("/", (_, res) => {
+        res.send("hello");
+    });
+    var key = fs.readFileSync(__dirname + "/../certs/selfsigned.key");
+    var cert = fs.readFileSync(__dirname + "/../certs/selfsigned.crt");
+    var options = {
+        key: key,
+        cert: cert,
+    };
+    var server = https.createServer(options, app);
+    server.listen(consts_1.PORT, () => {
+        console.log("server starting on port : " + consts_1.PORT);
     });
 });
 main().catch((err) => {
