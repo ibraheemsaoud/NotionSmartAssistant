@@ -1,13 +1,1 @@
 runtime: nodejs10
-
-env_variables:
-  BUCKET_NAME: "example-gcs-bucket"
-
-handlers:
-- url: /(.*\..+)$
-  static_files: dist/\1
-  upload: dist/(.*\..+)$
-
-- url: /.*
-  static_files: dist/index.html
-  upload: dist/index.html
