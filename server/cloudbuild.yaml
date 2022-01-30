@@ -1,0 +1,19 @@
+steps:
+# Pull the existing image
+ - name: 'gcr.io/cloud-builders/docker'
+   entrypoint: 'bash'
+   args:
+    - '-c'
+    - |
+      docker pull gcr.io/boxwood-theory-339717/notion-smart-assistant:latest || exit 0
+# Build a docker image
+ - name: 'gcr.io/cloud-builders/docker'
+   args: [ 'build', '-t', 'gcr.io/boxwood-theory-339717/notion-smart-assistant', '--cache-from', 'gcr.io/boxwood-theory-339717/notion-smart-assistant', '.' ]
+# Push the docker image to container registry
+ - name: 'gcr.io/cloud-builders/docker'
+   args: ["push", "gcr.io/boxwood-theory-339717/notion-smart-assistant"]
+# Deploy an image from Container Registry to Cloud Run
+ - name: 'gcr.io/cloud-builders/gcloud'
+   args: ['beta', 'run', 'deploy', 'notion-smart-assistant', '--image', 'gcr.io/boxwood-theory-339717/notion-smart-assistant:latest', '--region', 'europe-west1', '--platform', 'managed', '--allow-unauthenticated']
+images:
+ - 'gcr.io/boxwood-theory-339717/notion-smart-assistant'

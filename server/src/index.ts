@@ -11,6 +11,7 @@ import {
 } from "./resolvers";
 import { micorConfig } from "./config";
 import cors from "cors";
+import "dotenv-safe/config";
 // import { NotionHandler } from "./notionIntegration";
 
 const main = async () => {
@@ -33,7 +34,7 @@ const main = async () => {
 
   app.use(
     cors({
-      origin: ["http://localhost:3000", "https://studio.apollographql.com"],
+      origin: [process.env.CORS_ORIGIN, "https://studio.apollographql.com"],
       credentials: true,
     })
   );
@@ -62,7 +63,7 @@ const main = async () => {
     res.send("hello");
   });
 
-  app.listen(4001, () => {
+  app.listen(parseInt(process.env.PORT, 10), () => {
     console.log("server started");
   });
 

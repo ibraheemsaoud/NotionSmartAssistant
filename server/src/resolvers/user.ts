@@ -11,7 +11,7 @@ import {
   Query,
   Resolver,
 } from "type-graphql";
-import argon2 from "argon2";
+import bcrypt from "bcrypt";
 import { FieldError } from "./types";
 
 @InputType()
@@ -70,8 +70,8 @@ export class UsersResolver {
         ],
       };
     }
-    const hashedPassword = await argon2.hash(password);
-    console.log(hashedPassword);
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
     const user = em.create(User, { username, password: hashedPassword });
     try {
       await em.persistAndFlush(user);
@@ -108,7 +108,7 @@ export class UsersResolver {
         ],
       };
     }
-    const isPasswordValid = await argon2.verify(user.password, password);
+    const isPasswordValid = await bcrypt.compare(user.password, password);
     if (!isPasswordValid) {
       return {
         errors: [

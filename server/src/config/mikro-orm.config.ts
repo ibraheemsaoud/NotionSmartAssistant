@@ -9,9 +9,8 @@ export default {
     pattern: /^[\w-]+\d+\.[tj]s$/,
   },
   entities: [User, AddDatabaseEntry, Schedule, Automations],
-  dbName: "postgres",
+  url: process.env.DATABASE_URL,
   type: "postgresql" as "postgresql",
   debug: !__prod__,
-  user: "postgres",
-  password: "postgres",
+  logging: !__prod__,
 } as Parameters<typeof MikroORM.init>[0];
