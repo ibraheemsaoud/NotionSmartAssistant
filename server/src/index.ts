@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { MikroORM } from "@mikro-orm/core";
+import { Connection, IDatabaseDriver, MikroORM } from "@mikro-orm/core";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
@@ -11,11 +11,23 @@ import {
 } from "./resolvers";
 import { micorConfig } from "./config";
 import cors from "cors";
-import { NotionHandler } from "./notionIntegration";
+// import { NotionHandler } from "./notionIntegration";
 
 const main = async () => {
-  const orm = await MikroORM.init(micorConfig);
-  await orm.getMigrator().up();
+  let orm: MikroORM<IDatabaseDriver<Connection>>;
+  let retries = 5;
+  while (retries > 0) {
+    try {
+      orm = await MikroORM.init(micorConfig);
+      await orm.getMigrator().up();
+      break;
+    } catch (e) {
+      console.log(e);
+      retries--;
+      console.log(`retries left: ${retries}`);
+      await new Promise((resolve) => setTimeout(resolve, 5000));
+    }
+  }
 
   const app = express();
 
@@ -46,9 +58,9 @@ const main = async () => {
     cors: false,
   });
 
-  // app.get("/", (_, res) => {
-  //   res.send("hello");
-  // });
+  app.get("/", (_, res) => {
+    res.send("hello");
+  });
 
   app.listen(4001, () => {
     console.log("server started");

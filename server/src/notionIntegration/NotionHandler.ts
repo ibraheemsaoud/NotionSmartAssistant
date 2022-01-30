@@ -23,35 +23,35 @@ export const NotionHandler = () => {
   const updateDatabase = async (
     database_id: string
   ): Promise<NotionDatabaseList> => {
-    const propertiesData: NotionPage[] = [
-      {
-        object: "page",
-        cover: null,
-        icon: null,
-        parent: {
-          type: "database_id",
-          database_id: database_id,
-        },
-        archived: false,
-        properties: {
-          Name: {
-            type: "title",
-            title: [
-              {
-                type: "text",
-                text: { content: "4", link: null },
-                plain_text: "4",
-                href: null,
-              },
-            ],
-          },
-          Tag: {
-            type: "multi_select",
-            multi_select: [],
-          },
-        },
-      },
-    ];
+    // const propertiesData: NotionPage[] = [
+    //   {
+    //     object: "page",
+    //     cover: null,
+    //     icon: null,
+    //     parent: {
+    //       type: "database_id",
+    //       database_id: database_id,
+    //     },
+    //     archived: false,
+    //     properties: {
+    //       Name: {
+    //         type: "title",
+    //         title: [
+    //           {
+    //             type: "text",
+    //             text: { content: "4", link: null },
+    //             plain_text: "4",
+    //             href: null,
+    //           },
+    //         ],
+    //       },
+    //       Tag: {
+    //         type: "multi_select",
+    //         multi_select: [],
+    //       },
+    //     },
+    //   },
+    // ];
 
     const example = {
       properties: {
