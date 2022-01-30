@@ -1,0 +1,39 @@
+steps:
+# Step 1
+- name: 'gcr.io/cloud-builders/docker' 
+  entrypoint: 'bash'
+  args: [
+   '-c', 
+   'docker pull https://gcr.io/boxwood-theory-339717/github.com/ibraheemsaoud/notionsmartassistant@sha256:b9cd3e9cdf2df94eafe5f3016e8de1e19f9258e77b2fbfeaa53a772edca7ad69 || exit 0'
+  ]
+# Step 2
+- name: gcr.io/cloud-builders/docker
+  args: [
+   'build', 
+   '-t', 
+   'https://gcr.io/boxwood-theory-339717/github.com/ibraheemsaoud/notionsmartassistant@sha256:b9cd3e9cdf2df94eafe5f3016e8de1e19f9258e77b2fbfeaa53a772edca7ad69',
+   '.'
+  ]
+  dir: 'my-app-vue'
+# Step 3
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'k8s/']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-d'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=gke-my-app-vue'
+# Step 4
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: [
+   'set', 
+   'image', 
+   'deployment', 
+   'my-app-vue', 
+   'my-app-vue=https://gcr.io/boxwood-theory-339717/github.com/ibraheemsaoud/notionsmartassistant@sha256:b9cd3e9cdf2df94eafe5f3016e8de1e19f9258e77b2fbfeaa53a772edca7ad69'
+  ]
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-d'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=gke-my-app-vue'
+  # Push the image to Google Container Registry with the latest tag
+images: [
+   'https://gcr.io/boxwood-theory-339717/github.com/ibraheemsaoud/notionsmartassistant@sha256:b9cd3e9cdf2df94eafe5f3016e8de1e19f9258e77b2fbfeaa53a772edca7ad69'
+  ]

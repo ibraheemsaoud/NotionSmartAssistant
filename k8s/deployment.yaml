@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: notionsmartassistant
+  name: notionsmartassistant
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: notionsmartassistant
+  template:
+    metadata:
+      labels:
+        run: notionsmartassistant
+    spec:
+      containers:
+      - image: https://gcr.io/boxwood-theory-339717/github.com/ibraheemsaoud/notionsmartassistant@sha256:b9cd3e9cdf2df94eafe5f3016e8de1e19f9258e77b2fbfeaa53a772edca7ad69 #Replace [PROJECT-ID] accordingly
+        name: notionsmartassistant
+        ports:
+        - containerPort: 8080
